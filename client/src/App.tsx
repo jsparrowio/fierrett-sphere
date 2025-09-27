@@ -5,7 +5,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
 // import ThemeProvider from 'react-bootstrap/ThemeProvider'
 import './App.css'
-import { Layout, Menu, Breadcrumb } from 'antd';
+import { Layout, Menu } from 'antd';
 import fhsicon from "./assets/fhsicon.png";
 
 const { Header, Content, Footer } = Layout;

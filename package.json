@@ -12,18 +12,16 @@
     "client:build": "cd client && npm run build",
     "client:dev": "cd client && npm run dev",
     "seed": "cd server && npm run seed",
-    "build": "concurrently \"cd server && npm run build --silent\" \"cd client && npm run build\"",
+    "build": "concurrently \"cd server && npm run build --silent\" \"cd client && npm run build --silent\"",
     "deploy-build": "npm install && npm run build"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@ant-design/icons": "^5.6.1",
-    "concurrently": "^8.2.2",
-    "http-proxy-middleware": "^3.0.5"
+    "@ant-design/icons": "^6.0.2",
+    "concurrently": "^9.2.1"
   },
   "devDependencies": {
-    "@types/http-proxy-middleware": "^0.19.3",
-    "wait-on": "^7.2.0"
+    "wait-on": "^9.0.1"
   }
 }

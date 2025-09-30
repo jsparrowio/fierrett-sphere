@@ -5,7 +5,7 @@
   "main": "server/dist/server.js",
   "scripts": {
     "start": "node server/dist/server.js",
-    "start:dev": "concurrently \"cd server && npm run watch\" \"wait-on tcp:3001 && cd client && npm run dev\"",
+    "start:dev": "concurrently \"cd server && npm run dev\" \"wait-on tcp:3001 && cd client && npm run dev\"",
     "server": "cd server && npm start",
     "server:dev": "cd server && npm run dev",
     "install": "cd server && npm i && cd ../client && npm i",
@@ -19,9 +19,11 @@
   "license": "ISC",
   "dependencies": {
     "@ant-design/icons": "^5.6.1",
-    "concurrently": "^8.2.2"
+    "concurrently": "^8.2.2",
+    "http-proxy-middleware": "^3.0.5"
   },
   "devDependencies": {
+    "@types/http-proxy-middleware": "^0.19.3",
     "wait-on": "^7.2.0"
   }
 }

@@ -7,7 +7,7 @@
   "scripts": {
     "build": "echo \"\\033[1mBuilding server...\" && tsc --removeComments --pretty && echo \"\\033[1mServer built!\"",
     "start": "node dist/server.js",
-    "dev": "nodemon --watch src --exec node --loader ts-node/esm src/server.ts",
+    "dev": "nodemon --watch src --ext ts, js --exec \"node --import=@hyperse/ts-node/register ./src/server.ts\"",
     "seed": "node dist/seeds/seed.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -25,6 +25,7 @@
     "mongoose": "^8.18.3"
   },
   "devDependencies": {
+    "@hyperse/ts-node": "^1.0.3",
     "@types/bcrypt": "^6.0.0",
     "@types/express": "^5.0.3",
     "@types/express-serve-static-core": "^5.0.7",
@@ -33,7 +34,6 @@
     "@types/node": "^24.6.0",
     "dotenv": "^17.2.3",
     "nodemon": "^3.1.10",
-    "ts-node": "^10.9.2",
     "typescript": "^5.9.2",
     "vite": "^7.1.7"
   }

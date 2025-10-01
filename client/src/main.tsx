@@ -6,8 +6,9 @@ import App from './App.tsx'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import ErrorPage from './pages/ErrorPage.tsx'
 import { Home } from './pages/Home.tsx'
-// import Login from './pages/Login.tsx'
-// import UserSettingsPage from './pages/UserSettingsPage.tsx'
+import Login from './pages/Login.tsx'
+import UserSettingsPage from './pages/UserSettingsPage.tsx'
+import 'react-toastify/dist/ReactToastify.css';
 
 
 const router = createBrowserRouter([
@@ -20,14 +21,14 @@ const router = createBrowserRouter([
         index: true,
         element: <Home />
       },
-      // {
-      //   path: '/login',
-      //   element: <Login />
-      // },
-      // {
-      //   path: '/usersettings',
-      //   element: <UserSettingsPage />
-      // }
+      {
+        path: '/login',
+        element: <Login />
+      },
+      {
+        path: '/usersettings',
+        element: <UserSettingsPage />
+      }
     ]
   }
 ]);

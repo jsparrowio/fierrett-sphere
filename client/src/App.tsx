@@ -5,19 +5,13 @@ import {
 } from "@apollo/client";
 import { ApolloProvider } from "@apollo/client/react";
 import { SetContextLink } from "@apollo/client/link/context";
-
-//Button
-import { ConfigProvider, Layout } from 'antd';
-// import Auth from "./utils/auth";
-
-// useLayoutEffect, 
-import { useEffect, useState } from "react";
-
-// useLocation, useNavigate
-import { Outlet,  } from "react-router-dom";
+import { Button, ConfigProvider, Layout } from 'antd';
+import Auth from "./utils/auth";
+import { useEffect, useLayoutEffect, useState } from "react";
+import { Outlet, useLocation, useNavigate } from "react-router-dom";
 import NavOptions from "./components/Menu";
-// import { User } from "./components/User"
-// import { LogoutOutlined } from "@ant-design/icons";
+import { User } from "./components/User"
+import { LogoutOutlined } from "@ant-design/icons";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
 import './App.css'
@@ -57,10 +51,10 @@ const checkYear = () => {
 const App: React.FC = () => {
   const [collapsed, setCollapsed] = useState(false);
   const [mobile, setMobile] = useState(false);
-  // const navigate = useNavigate();
-  // const location = useLocation();
+  const navigate = useNavigate();
+  const location = useLocation();
   const [domLoad, setDomLoad] = useState(false);
-  // const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
+  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
 
   useEffect(() => {
     setDomLoad(false);
@@ -75,20 +69,20 @@ const App: React.FC = () => {
   }, []);
 
 
-  // useLayoutEffect(() => {
-  //   const loggedIn = Auth.loggedIn();
-  //   if (loggedIn === true) {
-  //     setIsLoggedIn(true);
-  //   } else {
-  //     setIsLoggedIn(false);
-  //   }
-  // }, [location]);
+  useLayoutEffect(() => {
+    const loggedIn = Auth.loggedIn();
+    if (loggedIn === true) {
+      setIsLoggedIn(true);
+    } else {
+      setIsLoggedIn(false);
+    }
+  }, [location]);
 
-  // const logout = () => {
-  //   Auth.logout();
-  //   setIsLoggedIn(false);
-  //   navigate("/login");
-  // };
+  const logout = () => {
+    Auth.logout();
+    setIsLoggedIn(false);
+    navigate("/login");
+  };
 
   return (
     <ApolloProvider client={client}>
@@ -109,16 +103,49 @@ const App: React.FC = () => {
             }
           }}
         >
-          <Layout className="layout" style={{ minHeight: '100vh' }}>
-            <Header style={{ display: 'flex', alignItems: 'center' }}>
-              <div className="logo"><img src={fhsicon} style={{ height: "50px", width: "50px", marginRight: "15px", marginLeft: "-30px" }}></img></div>
-              <NavOptions />
+          <Layout style={{ minHeight: '100vh' }}>
+            <Header
+              style={{
+                display: "flex",
+                alignItems: "center",
+                padding: "0 1rem", // AntD dark header
+              }}
+            >
+              <div className="logo" style={{ display: "flex", alignItems: "center", marginRight: "1rem" }}>
+                <img src={fhsicon} style={{ height: "50px", width: "50px" }} />
+              </div>
+              <div style={{ flex: 1 }}>
+                <NavOptions />
+              </div>
+
+              {isLoggedIn && (
+                <div style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
+                  {mobile ?
+                    <Button
+                      key="logout"
+                      type="primary"
+                      icon={<LogoutOutlined />}
+                      onClick={logout}
+                    />
+                    :
+                    <Button
+                      key="logout"
+                      type="primary"
+                      icon={<LogoutOutlined />}
+                      onClick={logout}
+                    >
+                      Logout
+                    </Button>
+                  }
+                </div>
+              )}
             </Header>
+
             <Layout>
               {mobile ?
-                <Sider collapsible collapsed={collapsed} onCollapse={(value) => setCollapsed(value)} style={!collapsed ? { background: "black", padding: "1rem" } : { background: "black" }} theme="dark" breakpoint="md" collapsedWidth={0} zeroWidthTriggerStyle={{ }}>
+                <Sider collapsible collapsed={collapsed} onCollapse={(value) => setCollapsed(value)} style={!collapsed ? { background: "black", padding: "1rem" } : { background: "black" }} theme="dark" breakpoint="md" collapsedWidth={0} zeroWidthTriggerStyle={{}}>
 
-                  {/* {isLoggedIn && !collapsed &&
+                  {isLoggedIn && !collapsed &&
                     <>
                       <User />
                       <Button
@@ -130,13 +157,13 @@ const App: React.FC = () => {
                         <LogoutOutlined /> Logout
                       </Button>
                     </>
-                  } */}
+                  }
 
                 </Sider>
                 :
                 <Sider collapsible collapsed={collapsed} onCollapse={(value) => setCollapsed(value)} style={{ background: "black" }} theme="dark">
 
-                  {/* {isLoggedIn && !collapsed &&
+                  {isLoggedIn && !collapsed &&
                     <>
                       <User />
                       <Button
@@ -161,7 +188,7 @@ const App: React.FC = () => {
                         <LogoutOutlined />
                       </Button>
                     </>
-                  } */}
+                  }
 
                 </Sider>
               }

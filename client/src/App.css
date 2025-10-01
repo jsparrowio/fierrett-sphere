@@ -1,3 +1,71 @@
+body {
+  margin: 0;
+  text-align: center;
+}
+
+html {
+  margin: 0;
+}
+
+h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
+}
+
+button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: #1a1a1a;
+  cursor: pointer;
+  transition: border-color 0.25s;
+  color: #FFFFFF;
+  margin: 0.25rem;
+}
+
+button:hover {
+  border-color: #f0f0f0;
+}
+
+button:focus,
+button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}
+
+aside {
+  z-index: 9995;
+}
+
+.ant-menu-sub {
+  background: #000000 !important;
+}
+
+@media (max-width: 768px) {
+
+  aside {
+    position: absolute !important;
+  }
+
+  .ant-card {
+    margin-top: 2rem;
+  }
+}
+
+@media (max-width: 650px) {
+  .welcome {
+    margin-left: 0 auto;
+    text-align: center;
+  }
+
+  .welcome li {
+    text-align: center;
+    margin-left: -10vw;
+  }
+}
+
 .App {
   min-height: 88.9vh;
   background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
@@ -68,7 +136,100 @@
   box-shadow: 0 2px 10px rgba(52, 152, 219, 0.3);
 }
 
-@media (max-width: 768px) {
+.link {
+  color: black;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.btndiv {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  top: 425px;
+}
+
+.priacndiv,
+.secacndiv {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.centered {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.user {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal {
+  background-color: rgba(0, 0, 0, 0.5);
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  overflow: auto;
+  z-index: 99998;
+}
+
+.toast {
+  z-index: 99999;
+}
+
+.acnbtn {
+  z-index: 2;
+  max-height: 75px;
+  color: #FFFFFF;
+  margin: 0.25rem;
+}
+
+.acnbtndiv {
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  justify-content: center;
+  max-height: 80px;
+  max-width: 100px;
+
+}
+
+.menudiv {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+img:not([src]) {
+  visibility: hidden;
+}
+
+@media (max-width: 650px) {
+  h1 {
+    margin-top: 5rem;
+    font-size: 2rem;
+  } }
+
+@media screen and (max-height: 650px) {
+  h1 {
+    font-size: 2rem;
+    margin-bottom: 0;
+  }
+}
   .landing-container {
     margin: 10px;
     padding: 30px 20px;
@@ -86,4 +247,4 @@
     padding: 12px 25px;
     font-size: 1rem;
   }
-}
+

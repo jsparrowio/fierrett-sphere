@@ -18,11 +18,11 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@ant-design/icons": "^6.0.2",
+    "@ant-design/icons": "^6.1.0",
     "concurrently": "^9.2.1"
   },
   "devDependencies": {
-    "baseline-browser-mapping": "^2.9.18",
-    "wait-on": "^9.0.1"
+    "baseline-browser-mapping": "^2.9.19",
+    "wait-on": "^9.0.4"
   }
 }

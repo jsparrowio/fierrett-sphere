@@ -108,11 +108,11 @@ const App: React.FC = () => {
               style={{
                 display: "flex",
                 alignItems: "center",
-                padding: "0 1rem", // AntD dark header
+                padding: "0 1rem",
               }}
             >
               <div className="logo" style={{ display: "flex", alignItems: "center", marginRight: "1rem" }}>
-                <img src={fhsicon} style={{ height: "50px", width: "50px" }} />
+                <img src={fhsicon} style={{ height: "75px", width: "50px" }} />
               </div>
               <div style={{ flex: 1 }}>
                 <NavOptions />
@@ -142,55 +142,74 @@ const App: React.FC = () => {
             </Header>
 
             <Layout>
-              {mobile ?
-                <Sider collapsible collapsed={collapsed} onCollapse={(value) => setCollapsed(value)} style={!collapsed ? { background: "black", padding: "1rem" } : { background: "black" }} theme="dark" breakpoint="md" collapsedWidth={0} zeroWidthTriggerStyle={{}}>
+              {
+                isLoggedIn && (
+                  mobile ?
+                    <Sider
+                      collapsible
+                      collapsed={collapsed}
+                      onCollapse={(value) => setCollapsed(value)}
+                      style={!collapsed ? { background: "black", padding: "1rem" } : { background: "black" }}
+                      theme="dark"
+                      breakpoint="md"
+                      collapsedWidth={0}
+                      zeroWidthTriggerStyle={{}}
+                    >
 
-                  {isLoggedIn && !collapsed &&
-                    <>
-                      <User />
-                      <Button
-                        key="logout"
-                        variant="solid"
-                        style={{ marginLeft: "0.5rem" }}
-                        onClick={() => logout()}
-                      >
-                        <LogoutOutlined /> Logout
-                      </Button>
-                    </>
-                  }
+                      {!collapsed && (
+                        <>
+                          <User />
+                          <Button
+                            key="logout"
+                            variant="solid"
+                            style={{ marginLeft: "0.5rem" }}
+                            onClick={logout}
+                          >
+                            <LogoutOutlined /> Logout
+                          </Button>
+                        </>
+                      )}
 
-                </Sider>
-                :
-                <Sider collapsible collapsed={collapsed} onCollapse={(value) => setCollapsed(value)} style={{ background: "black" }} theme="dark">
+                    </Sider>
+                    :
+                    <Sider
+                      collapsible
+                      collapsed={collapsed}
+                      onCollapse={(value) => setCollapsed(value)}
+                      style={{ background: "black" }}
+                      theme="dark"
+                    >
 
-                  {isLoggedIn && !collapsed &&
-                    <>
-                      <User />
-                      <Button
-                        key="logout"
-                        variant="solid"
-                        style={{ marginLeft: "0.5rem" }}
-                        onClick={() => logout()}
-                      >
-                        <LogoutOutlined /> Logout
-                      </Button>
-                    </>
-                  }
-                  {isLoggedIn && collapsed &&
-                    <>
-                      <User />
-                      <Button
-                        key="logout"
-                        variant="solid"
-                        style={{ marginLeft: "0.5rem" }}
-                        onClick={() => logout()}
-                      >
-                        <LogoutOutlined />
-                      </Button>
-                    </>
-                  }
+                      {!collapsed && (
+                        <>
+                          <User />
+                          <Button
+                            key="logout"
+                            variant="solid"
+                            style={{ marginLeft: "0.5rem" }}
+                            onClick={logout}
+                          >
+                            <LogoutOutlined /> Logout
+                          </Button>
+                        </>
+                      )}
 
-                </Sider>
+                      {collapsed && (
+                        <>
+                          <User />
+                          <Button
+                            key="logout"
+                            variant="solid"
+                            style={{ marginLeft: "0.5rem" }}
+                            onClick={logout}
+                          >
+                            <LogoutOutlined />
+                          </Button>
+                        </>
+                      )}
+
+                    </Sider>
+                )
               }
               <Content style={{ textAlign: 'center' }} className="App">
                 <Outlet />

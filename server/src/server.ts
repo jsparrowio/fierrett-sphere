@@ -6,6 +6,8 @@ import { authenticateToken } from './services/auth.js';
 import { typeDefs, resolvers } from './schemas/index.js';
 import db from './config/connection.js';
 import { fileURLToPath } from 'node:url';
+import { checkServer } from './routes/api/server-status.js';
+import routes from './routes/index.js';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
@@ -31,6 +33,7 @@ const startApolloServer = async () => {
       context: authenticateToken as any
     }
   ));
+  app.use(routes);
 
   if (process.env.NODE_ENV === 'production') {
     console.log('\x1b[1mYour app is running in production mode!');
@@ -47,6 +50,9 @@ const startApolloServer = async () => {
   }
 
   db.on('error', console.error.bind(console, '\x1b[31mMongoDB connection error:'));
+
+  const initialServerStatus = await checkServer();
+  console.log(`\x1b[1mTFS Core Server Status: ${initialServerStatus ? 'Online ✅' : 'Offline ❌'}\x1b[0m`);
 
   app.listen(PORT, () => {
     console.log(`\x1b[1mApollo + Express running on port \x1b[4m${PORT}`);

@@ -261,7 +261,7 @@ export default function LoginPage() {
                 {current === 'login' &&
                     <form className='form' onSubmit={handleLoginSubmit} style={{ 'display': 'flex', 'flexDirection': 'column', 'justifyContent': 'center', 'alignItems': 'center' }}>
 
-                        <img src={fhsicon} style={{ 'height': '150px', 'width': '150px' }} alt="fierrettspherelogo"></img>
+                        <img src={fhsicon} style={{ 'height': '225px', 'width': '150px' }} alt="fierrettspherelogo"></img>
                         <h2>Login to The Fierrett Sphere</h2>
                         <label>Username</label>
                         <Input
@@ -288,6 +288,11 @@ export default function LoginPage() {
                         <Button size="large" variant="solid" color="default" htmlType="submit">Login</Button>
                     </form>}
                 {current === 'signup' &&
+                    <h2>
+                        Signup has currently been disabled. We apoligize for the inconvenience!
+                    </h2>
+                }
+                {current === 'signup2' &&
                     <form className='form' onSubmit={handleSignupSubmit} style={{ 'display': 'flex', 'flexDirection': 'column', 'justifyContent': 'center', 'alignItems': 'center' }}>
 
                         <img src={fhsicon} style={{ 'height': '150px', 'width': '150px' }} alt="fierrettspherelogo"></img>

@@ -13,15 +13,15 @@ interface User {
     email: string;
     // team?: any[];
 }
-interface AddUserArgs {
-    input: {
-        username: string;
-        first_name: string;
-        last_name: string;
-        email: string;
-        password: string;
-    }
-}
+// interface AddUserArgs {
+//     input: {
+//         username: string;
+//         first_name: string;
+//         last_name: string;
+//         email: string;
+//         password: string;
+//     }
+// }
 interface LoginUserArgs {
     username: string;
     password: string;
@@ -68,26 +68,26 @@ const resolvers = {
         },
     },
     Mutation: {
-        // add user, which adds a user to the database using the add user arguments
-        addUser: async (_parent: any, { input }: AddUserArgs) => {
-            const usernameLower = new RegExp(input.username, 'i');
-            const emailLower = new RegExp(input.email, 'i');
-            const existingUsername = await checkForExistingUsername(usernameLower);
-            const existingEmail = await checkForExistingEmail(emailLower);
-            if (existingUsername) {
-                throw new Error('Username already exists');
-            } else if (existingEmail) {
-                throw new Error('Email already exists');
-            } else {
-                try {
-                    const user = await User.create({ ...input });
-                    const token = signToken(user.username, user.first_name, user.last_name, user.email, user._id);
-                    return { token, user };
-                } catch (err: any) {
-                    throw new Error(`Error signing up user: ${err.errorResponse.errmsg}`);
-                }
-            }
-        },
+        // // add user, which adds a user to the database using the add user arguments
+        // addUser: async (_parent: any, { input }: AddUserArgs) => {
+        //     const usernameLower = new RegExp(input.username, 'i');
+        //     const emailLower = new RegExp(input.email, 'i');
+        //     const existingUsername = await checkForExistingUsername(usernameLower);
+        //     const existingEmail = await checkForExistingEmail(emailLower);
+        //     if (existingUsername) {
+        //         throw new Error('Username already exists');
+        //     } else if (existingEmail) {
+        //         throw new Error('Email already exists');
+        //     } else {
+        //         try {
+        //             const user = await User.create({ ...input });
+        //             const token = signToken(user.username, user.first_name, user.last_name, user.email, user._id);
+        //             return { token, user };
+        //         } catch (err: any) {
+        //             throw new Error(`Error signing up user: ${err.errorResponse.errmsg}`);
+        //         }
+        //     }
+        // },
         // login, which checks for the user in the database, matches password, and sends back a new token if the data is correct
         login: async (_parent: any, { username, password }: LoginUserArgs) => {
             const usernameLower = new RegExp(username, 'i');

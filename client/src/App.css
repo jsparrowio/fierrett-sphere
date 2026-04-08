@@ -214,6 +214,19 @@ aside {
   justify-content: center;
 }
 
+.status-box {
+  height: 32px;
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 0rem;
+  padding: 0.25rem;
+  border: 1px solid;
+  border-radius: 8px;
+  color: white;
+  white-space: nowrap;
+}
+
 img:not([src]) {
   visibility: hidden;
 }

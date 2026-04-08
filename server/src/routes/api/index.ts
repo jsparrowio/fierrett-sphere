@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { serverStatusRouter } from './server-status';
+import { serverStatusRouter } from './server-status.js';
 
 const router = Router();
 

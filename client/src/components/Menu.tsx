@@ -6,7 +6,7 @@ import {
   CheckCircleFilled,
   CloseCircleFilled,
   HomeOutlined,
-  UserOutlined,
+  // UserOutlined,
 } from "@ant-design/icons";
 import Auth from "../utils/auth";
 
@@ -54,12 +54,12 @@ function NavOptions() {
   ];
 
   if (!isLoggedIn) {
-    items.push({
-      label: "Login",
-      key: "/login",
-      style: { borderRadius: "10px" },
-      icon: <UserOutlined />,
-    });
+    // items.push({
+    //   label: "Login",
+    //   key: "/login",
+    //   style: { borderRadius: "10px" },
+    //   icon: <UserOutlined />,
+    // });
   }
 
   const statusColor =

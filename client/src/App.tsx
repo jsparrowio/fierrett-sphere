@@ -10,7 +10,7 @@ import Auth from "./utils/auth";
 import { useEffect, useLayoutEffect, useState } from "react";
 import { Outlet, useLocation, useNavigate } from "react-router-dom";
 import NavOptions from "./components/Menu";
-import { User } from "./components/User"
+import { useUser } from "./components/User"
 import { LogoutOutlined } from "@ant-design/icons";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
@@ -48,13 +48,14 @@ const checkYear = () => {
   }
 }
 
-const App: React.FC = () => {
+const AppLayout: React.FC = () => {
   const [collapsed, setCollapsed] = useState(false);
   const [mobile, setMobile] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
   const [domLoad, setDomLoad] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
+  const activeUser = useUser();
 
   useEffect(() => {
     setDomLoad(false);
@@ -85,7 +86,7 @@ const App: React.FC = () => {
   };
 
   return (
-    <ApolloProvider client={client}>
+    <>
       {domLoad &&
         <ConfigProvider
           theme={{
@@ -158,7 +159,33 @@ const App: React.FC = () => {
 
                       {!collapsed && (
                         <>
-                          <User />
+                          <div
+                            className="user"
+                            style={{
+                              display: "flex",
+                              alignItems: "center",
+                              gap: "10px",
+                              marginRight: "15px"
+                            }}
+                          >
+                            <h2
+                              style={{
+                                fontSize: "1rem",
+                                color: "#FFFFFF",
+                                marginLeft: "1rem"
+                              }}
+                            >
+                              {activeUser.first_name ?
+                                <>
+                                  Welcome, {activeUser.first_name}!
+                                </>
+                                :
+                                <>
+                                  Welcome!
+                                </>
+                              }
+                            </h2>
+                          </div>
                           <Button
                             key="logout"
                             variant="solid"
@@ -182,7 +209,33 @@ const App: React.FC = () => {
 
                       {!collapsed && (
                         <>
-                          <User />
+                          <div
+                            className="user"
+                            style={{
+                              display: "flex",
+                              alignItems: "center",
+                              gap: "10px",
+                              marginRight: "15px"
+                            }}
+                          >
+                            <h2
+                              style={{
+                                fontSize: "1rem",
+                                color: "#FFFFFF",
+                                marginLeft: "1rem"
+                              }}
+                            >
+                              {activeUser.first_name ?
+                                <>
+                                  Welcome, {activeUser.first_name}!
+                                </>
+                                :
+                                <>
+                                  Welcome!
+                                </>
+                              }
+                            </h2>
+                          </div>
                           <Button
                             key="logout"
                             variant="solid"
@@ -196,7 +249,33 @@ const App: React.FC = () => {
 
                       {collapsed && (
                         <>
-                          <User />
+                          <div
+                            className="user"
+                            style={{
+                              display: "flex",
+                              alignItems: "center",
+                              gap: "10px",
+                              marginRight: "15px"
+                            }}
+                          >
+                            <h2
+                              style={{
+                                fontSize: "1rem",
+                                color: "#FFFFFF",
+                                marginLeft: "1rem"
+                              }}
+                            >
+                              {activeUser.first_name ?
+                                <>
+                                  Welcome, {activeUser.first_name}!
+                                </>
+                                :
+                                <>
+                                  Welcome!
+                                </>
+                              }
+                            </h2>
+                          </div>
                           <Button
                             key="logout"
                             variant="solid"
@@ -215,12 +294,20 @@ const App: React.FC = () => {
                 <Outlet />
               </Content>
             </Layout>
-            <Footer style={{ background: "black", color: "white", textAlign: 'center', padding: " 0 0 1rem 0", paddingBottom: "1rem" }}>Fierrett Sphere © jsparrowio 2025 {checkYear()} </Footer>
+            <Footer style={{ background: "black", color: "white", textAlign: 'center', padding: " 0 0 1rem 0", paddingBottom: "1rem" }}>The Fierrett Sphere © jsparrowio 2025 {checkYear()} </Footer>
           </Layout>
         </ConfigProvider>
       }
-    </ApolloProvider>
+    </>
   )
 }
+
+const App: React.FC = () => {
+  return (
+    <ApolloProvider client={client}>
+      <AppLayout />
+    </ApolloProvider>
+  );
+};
 
 export default App

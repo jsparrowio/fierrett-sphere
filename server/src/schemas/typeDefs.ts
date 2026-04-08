@@ -53,7 +53,7 @@ type Query {
 
 type Mutation {
     login(username: String!, password: String!): Auth
-    addUser(input: UserInput!): Auth
+    # addUser(input: UserInput!): Auth
     updateProfile(input: UserProfile!): User
     updatePassword(password: String!): String
     confirmPassword(currentPassword: String!): Boolean
